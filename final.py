@@ -77,8 +77,10 @@ train['price_adults'] = train['avg_price_per_room'] * \
     train['no_of_adults']
 train['price_room'] = train['avg_price_per_room'] * \
     train['room_type_reserved']
-train['requests_adults'] = train['no_of_special_requests'] * \
-    train['no_of_adults']
+train['requests_room'] = train['no_of_special_requests'] * \
+    train['room_type_reserved']
+train['requests_lead'] = train['no_of_special_requests'] * \
+    train['no_of_previous_cancellations']
 
 train['no_of_adults'] += train['no_of_children']
 train = train.drop(['no_of_children'], axis=1)
@@ -99,8 +101,10 @@ test['price_adults'] = test['avg_price_per_room'] * \
     test['no_of_adults']
 test['price_room'] = test['avg_price_per_room'] * \
     test['room_type_reserved']
-test['requests_adults'] = test['no_of_special_requests'] * \
-    test['no_of_adults']
+test['requests_room'] = test['no_of_special_requests'] * \
+    test['room_type_reserved']
+test['requests_lead'] = test['no_of_special_requests'] * \
+    test['no_of_previous_cancellations']
 
 test['no_of_adults'] += test['no_of_children']
 test = test.drop(['no_of_children'], axis=1)
@@ -124,7 +128,8 @@ features = [
     'lead_price',
     'price_adults',
     'price_room',
-    'requests_adults'
+    'requests_room',
+    'requests_lead'
 ]
 scaler = MinMaxScaler()
 train[features] = scaler.fit_transform(train[features])
@@ -138,7 +143,8 @@ feature_names = ['no_of_adults',
                  'type_of_meal_plan', 'required_car_parking_space', 'room_type_reserved',
                  'lead_time', 'market_segment_type',
                  'avg_price_per_room', 'no_of_special_requests',
-                 'nights', 'lead_nights', 'lead_weekend_nights', "lead_car", 'lead_room', 'lead_market', 'lead_price', 'price_adults', 'price_room', 'requests_adults']
+                 'nights', 'lead_nights', 'lead_weekend_nights', "lead_car", 'lead_room', 'lead_market', 'lead_price', 'price_adults', 'price_room',
+                 'requests_room', 'requests_lead']
 
 X = train[feature_names]
 y = train["booking_status"]
