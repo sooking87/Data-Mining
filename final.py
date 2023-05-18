@@ -166,3 +166,23 @@ sample = pd.DataFrame()
 sample['Booking_ID'] = test['Booking_ID']
 sample['booking_status'] = y_pred
 sample.to_csv('sample.csv', index=False)
+
+# X = train[feature_names]
+# y = train["booking_status"]
+# # smote = SMOTE(random_state = 42)
+# # Decision Tree 학습/예측/평가
+# X_train, X_test, y_train, y_test = train_test_split(
+#     X, y, test_size=0.2, random_state=42)
+# # X_train_over, y_train_over = smote.fit_resample(X_train, y_train)
+
+# # Decision Tree 학습/예측/평가
+# dt_model = DecisionTreeClassifier(
+#     max_depth=15, min_samples_leaf=6, min_samples_split=2, criterion="gini")
+# scores = cross_val_score(dt_model, X, y, cv=10)
+# print("Cross Validation Scores: ", scores)
+# print("Average CV Score: ", scores.mean())
+# print("Number of CV Scores used in Average: ", len(scores))
+
+# dt_model.fit(X_train, y_train)
+# y_pred = dt_model.predict(X_test)
+# print('Accuracy: {:.2f}'.format(accuracy_score(y_test, y_pred)))
